@@ -4,6 +4,11 @@ const ErrorElement = () => {
   const error = useRouteError();
   console.log(error);
 
-  return <h4 className='font-bold text-4xl'>There was an error...</h4>;
+  return (
+    <div className='align-element py-20 text-center'>
+      <h4 className='heading-md text-base-content/40'>Something went wrong</h4>
+      <p className='body-lg mt-4'>Please try refreshing the page</p>
+    </div>
+  );
 };
 export default ErrorElement;

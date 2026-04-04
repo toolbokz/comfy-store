@@ -1,12 +1,14 @@
 import ProductsGrid from './ProductsGrid';
-import SectionTitle from './SectionTitle';
 
 const FeaturedProducts = () => {
   return (
-    <div className='pt-24'>
-      <SectionTitle text='featured products' />
+    <section className='section-padding'>
+      <div className='text-center mb-12'>
+        <p className='label-text-premium mb-3'>Curated for you</p>
+        <h2 className='heading-lg'>Featured Collection</h2>
+      </div>
       <ProductsGrid />
-    </div>
+    </section>
   );
 };
 export default FeaturedProducts;

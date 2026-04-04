@@ -9,12 +9,12 @@ export const action = async ({ request }) => {
 
   try {
     const response = await customFetch.post('/auth/local/register', data);
-    toast.success('account created successfully');
+    toast.success('Account created successfully');
     return redirect('/login');
   } catch (error) {
     const errorMessage =
       error?.response?.data?.error?.message ||
-      'please double check your credentials';
+      'Please double check your credentials';
     toast.error(errorMessage);
     return null;
   }
@@ -22,25 +22,33 @@ export const action = async ({ request }) => {
 
 const Register = () => {
   return (
-    <section className='h-screen grid place-items-center'>
+    <section className='min-h-screen grid place-items-center bg-base-200/30 px-4'>
       <Form
         method='POST'
-        className='card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4'
+        className='w-full max-w-md bg-base-100 border border-base-300/50 p-10'
       >
-        <h4 className='text-center text-3xl font-bold'>Register</h4>
-        <FormInput type='text' label='username' name='username' />
-        <FormInput type='email' label='email' name='email' />
-        <FormInput type='password' label='password' name='password' />
-        <div className='mt-4'>
-          <SubmitBtn text='register' />
+        <div className='text-center mb-8'>
+          <Link to='/' className='font-serif text-2xl tracking-wider'>
+            COMFY
+          </Link>
+          <h4 className='font-serif text-xl mt-6'>Create Account</h4>
+          <p className='body-sm mt-2'>Join the Comfy community</p>
         </div>
-        <p className='text-center'>
-          Already a member?
+        <div className='flex flex-col gap-y-4'>
+          <FormInput type='text' label='Username' name='username' />
+          <FormInput type='email' label='Email' name='email' />
+          <FormInput type='password' label='Password' name='password' />
+        </div>
+        <div className='mt-8'>
+          <SubmitBtn text='Create Account' />
+        </div>
+        <p className='text-center mt-8 text-sm text-base-content/60'>
+          Already have an account?{' '}
           <Link
             to='/login'
-            className='ml-2 link link-hover link-primary capitalize'
+            className='text-secondary hover:text-base-content transition-colors font-medium'
           >
-            login
+            Sign In
           </Link>
         </p>
       </Form>

@@ -5,14 +5,18 @@ import {
   About,
   Cart,
   Checkout,
+  Craftsmanship,
   Error,
   HomeLayout,
   Landing,
   Login,
   Orders,
+  PrivacyPolicy,
   Products,
   Register,
   SingleProduct,
+  Sustainability,
+  TermsOfService,
 } from './pages';
 
 import { ErrorElement } from './components';
@@ -68,6 +72,22 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <About />,
+      },
+      {
+        path: 'sustainability',
+        element: <Sustainability />,
+      },
+      {
+        path: 'craftsmanship',
+        element: <Craftsmanship />,
+      },
+      {
+        path: 'privacy-policy',
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: 'terms-of-service',
+        element: <TermsOfService />,
       },
       {
         path: 'checkout',

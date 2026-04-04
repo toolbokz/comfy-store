@@ -1,5 +1,6 @@
 import { Filters, PaginationContainer, ProductsContainer } from '../components';
 import { customFetch } from '../utils';
+
 const url = '/products';
 
 const allProductsQuery = (queryParams) => {
@@ -26,26 +27,26 @@ const allProductsQuery = (queryParams) => {
 
 export const loader =
   (queryClient) =>
-  async ({ request }) => {
-    const params = Object.fromEntries([
-      ...new URL(request.url).searchParams.entries(),
-    ]);
+    async ({ request }) => {
+      const params = Object.fromEntries([
+        ...new URL(request.url).searchParams.entries(),
+      ]);
 
-    const response = await queryClient.ensureQueryData(
-      allProductsQuery(params)
-    );
-    const products = response.data.data;
-    const meta = response.data.meta;
-    return { products, meta, params };
-  };
+      const response = await queryClient.ensureQueryData(
+        allProductsQuery(params)
+      );
+      const products = response.data.data;
+      const meta = response.data.meta;
+      return { products, meta, params };
+    };
 
 const Products = () => {
   return (
-    <>
+    <section className='align-element py-20'>
       <Filters />
       <ProductsContainer />
       <PaginationContainer />
-    </>
+    </section>
   );
 };
 export default Products;

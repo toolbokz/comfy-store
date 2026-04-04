@@ -1,6 +1,5 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, Link } from 'react-router-dom';
 import { formatPrice, customFetch, generateAmountOptions } from '../utils';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../features/cart/cartSlice';
@@ -14,13 +13,13 @@ const singleProductQuery = (id) => {
 
 export const loader =
   (queryClient) =>
-  async ({ params }) => {
-    const response = await queryClient.ensureQueryData(
-      singleProductQuery(params.id)
-    );
+    async ({ params }) => {
+      const response = await queryClient.ensureQueryData(
+        singleProductQuery(params.id)
+      );
 
-    return { product: response.data.data };
-  };
+      return { product: response.data.data };
+    };
 
 const SingleProduct = () => {
   const { product } = useLoaderData();
@@ -29,6 +28,7 @@ const SingleProduct = () => {
   const dollarsAmount = formatPrice(price);
   const [productColor, setProductColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
+  const dispatch = useDispatch();
 
   const handleAmount = (e) => {
     setAmount(parseInt(e.target.value));
@@ -45,70 +45,83 @@ const SingleProduct = () => {
     amount,
   };
 
-  const dispatch = useDispatch();
-
   const addToCart = () => {
     dispatch(addItem({ product: cartProduct }));
   };
 
   return (
-    <section>
-      <div className='text-md breadcrumbs'>
-        <ul>
+    <section className='align-element py-12 sm:py-20'>
+      {/* Breadcrumbs */}
+      <nav className='mb-10'>
+        <ol className='flex items-center gap-2 font-sans text-sm'>
           <li>
-            <Link to='/'>Home</Link>
+            <Link
+              to='/'
+              className='text-base-content/40 hover:text-base-content transition-colors'
+            >
+              Home
+            </Link>
           </li>
+          <li className='text-base-content/30'>/</li>
           <li>
-            <Link to='/products'>Products</Link>
+            <Link
+              to='/products'
+              className='text-base-content/40 hover:text-base-content transition-colors'
+            >
+              Products
+            </Link>
           </li>
-        </ul>
-      </div>
-      {/* PRODUCT */}
-      <div className='mt-6 grid gap-y-8 lg:grid-cols-2 lg:gap-x-16'>
-        {/* IMAGE */}
-        <img
-          src={image}
-          alt={title}
-          className='w-96 h-96 object-cover rounded-lg lg:w-full'
-        />
-        {/* PRODUCT */}
-        <div>
-          <h1 className='capitalize text-3xl font-bold'>{title}</h1>
-          <h4 className='text-xl text-neutral-content font-bold mt-2'>
-            {company}
-          </h4>
-          <p className='mt-3 text-xl'>{dollarsAmount}</p>
-          <p className='mt-6 leading-8'>{description}</p>
-          {/* COLORS */}
-          <div className='mt-6'>
-            <h4 className='text-md font-medium tracking-wider capitalize'>
-              colors
-            </h4>
-            <div className='mt-2'>
-              {colors.map((color) => {
-                return (
-                  <button
-                    key={color}
-                    type='button'
-                    className={`badge w-6 h-6 mr-2 ${
-                      color === productColor && 'border-2 border-secondary'
+          <li className='text-base-content/30'>/</li>
+          <li className='text-base-content capitalize'>{title}</li>
+        </ol>
+      </nav>
+
+      {/* Product Layout */}
+      <div className='grid lg:grid-cols-2 gap-12 lg:gap-20'>
+        {/* Image */}
+        <div className='aspect-square overflow-hidden bg-base-200'>
+          <img
+            src={image}
+            alt={title}
+            className='w-full h-full object-cover'
+          />
+        </div>
+
+        {/* Details */}
+        <div className='flex flex-col justify-center'>
+          <p className='label-text-premium mb-3'>{company}</p>
+          <h1 className='heading-lg capitalize'>{title}</h1>
+          <p className='font-serif text-2xl text-secondary mt-4'>
+            {dollarsAmount}
+          </p>
+          <p className='body-lg mt-8'>{description}</p>
+
+          {/* Colors */}
+          <div className='mt-8'>
+            <h4 className='label-text-premium mb-3'>Color</h4>
+            <div className='flex gap-3'>
+              {colors.map((color) => (
+                <button
+                  key={color}
+                  type='button'
+                  className={`w-8 h-8 rounded-full border-2 transition-all ${color === productColor
+                      ? 'border-base-content scale-110'
+                      : 'border-transparent hover:border-base-300'
                     }`}
-                    style={{ backgroundColor: color }}
-                    onClick={() => setProductColor(color)}
-                  ></button>
-                );
-              })}
+                  style={{ backgroundColor: color }}
+                  onClick={() => setProductColor(color)}
+                />
+              ))}
             </div>
           </div>
-          {/* AMOUNT */}
-          <div className='form-control w-full max-w-xs'>
-            <label className='label' htmlFor='amount'>
-              <h4 className='text-md font-medium -tracking-wider capitalize'>
-                amount
-              </h4>
+
+          {/* Amount */}
+          <div className='mt-8'>
+            <label htmlFor='amount' className='label-text-premium mb-3 block'>
+              Quantity
             </label>
             <select
-              className='select select-secondary select-bordered select-md'
+              className='premium-select select-md w-full max-w-[120px]'
               id='amount'
               value={amount}
               onChange={handleAmount}
@@ -116,11 +129,35 @@ const SingleProduct = () => {
               {generateAmountOptions(20)}
             </select>
           </div>
-          {/* CART BTN */}
+
+          {/* Add to Cart */}
           <div className='mt-10'>
-            <button className='btn btn-secondary btn-md' onClick={addToCart}>
-              Add to bag
+            <button
+              className='premium-btn-primary w-full sm:w-auto px-12 py-3'
+              onClick={addToCart}
+            >
+              Add to Cart
             </button>
+          </div>
+
+          {/* Trust badges */}
+          <div className='mt-10 pt-8 border-t border-base-300/50 grid grid-cols-2 gap-4'>
+            <div>
+              <p className='font-sans text-xs font-semibold uppercase tracking-wider'>
+                Free Shipping
+              </p>
+              <p className='text-xs text-base-content/50 mt-1'>
+                On orders over $150
+              </p>
+            </div>
+            <div>
+              <p className='font-sans text-xs font-semibold uppercase tracking-wider'>
+                Easy Returns
+              </p>
+              <p className='text-xs text-base-content/50 mt-1'>
+                30-day return policy
+              </p>
+            </div>
           </div>
         </div>
       </div>

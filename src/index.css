@@ -2,8 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+}
+
 @layer components {
   .align-element {
-    @apply mx-auto max-w-6xl px-8;
+    @apply mx-auto max-w-7xl px-6 sm:px-8 lg:px-12;
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .premium-card {
+    @apply bg-base-100 border border-base-300/50 overflow-hidden transition-all duration-500 hover:shadow-lg hover:shadow-base-300/30;
+  }
+
+  .premium-btn {
+    @apply btn rounded-none font-sans font-medium tracking-wider text-xs uppercase px-6 py-3 h-auto min-h-0;
+  }
+
+  .premium-btn-primary {
+    @apply premium-btn btn-primary;
+  }
+
+  .premium-btn-outline {
+    @apply premium-btn btn-outline border-base-content/20 hover:bg-base-content hover:text-base-100 hover:border-base-content;
+  }
+
+  .premium-input {
+    @apply input input-bordered rounded-none font-sans border-base-300 focus:border-secondary focus:outline-none bg-transparent;
+  }
+
+  .premium-select {
+    @apply select select-bordered rounded-none font-sans border-base-300 focus:border-secondary focus:outline-none bg-transparent;
+  }
+
+  .heading-xl {
+    @apply font-serif text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight tracking-tight;
+  }
+
+  .heading-lg {
+    @apply font-serif text-3xl sm:text-4xl font-medium leading-tight tracking-tight;
+  }
+
+  .heading-md {
+    @apply font-serif text-2xl sm:text-3xl font-medium leading-tight;
+  }
+
+  .heading-sm {
+    @apply font-serif text-xl sm:text-2xl font-medium;
+  }
+
+  .body-lg {
+    @apply text-base sm:text-lg leading-relaxed text-base-content/70;
+  }
+
+  .body-sm {
+    @apply text-sm leading-relaxed text-base-content/60;
+  }
+
+  .label-text-premium {
+    @apply text-xs font-sans font-medium uppercase tracking-widest text-base-content/50;
   }
 }

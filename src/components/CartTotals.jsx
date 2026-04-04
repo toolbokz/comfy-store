@@ -7,27 +7,28 @@ const CartTotals = () => {
   );
 
   return (
-    <div className='card bg-base-200'>
-      <div className='card-body'>
-        {/* SUBTOTAL */}
-        <p className='flex justify-between text-xs border-b border-base-300 pb-2'>
-          <span>Subtotal</span>
+    <div className='bg-base-200/50 border border-base-300/50 p-8'>
+      <h4 className='font-sans text-xs font-semibold uppercase tracking-widest mb-6'>
+        Order Summary
+      </h4>
+      <div className='space-y-3'>
+        <p className='flex justify-between text-sm'>
+          <span className='text-base-content/60'>Subtotal</span>
           <span className='font-medium'>{formatPrice(cartTotal)}</span>
         </p>
-        {/* SHIPPING */}
-        <p className='flex justify-between text-xs border-b border-base-300 pb-2'>
-          <span>Shipping</span>
+        <p className='flex justify-between text-sm'>
+          <span className='text-base-content/60'>Shipping</span>
           <span className='font-medium'>{formatPrice(shipping)}</span>
         </p>
-        {/* Tax */}
-        <p className='flex justify-between text-xs border-b border-base-300 pb-2'>
-          <span>Tax</span>
+        <p className='flex justify-between text-sm'>
+          <span className='text-base-content/60'>Tax</span>
           <span className='font-medium'>{formatPrice(tax)}</span>
         </p>
-        {/* Order Total */}
-        <p className='flex justify-between text-sm mt-4 pb-2'>
-          <span>Order Total</span>
-          <span className='font-medium'>{formatPrice(orderTotal)}</span>
+      </div>
+      <div className='border-t border-base-300/50 mt-6 pt-6'>
+        <p className='flex justify-between'>
+          <span className='font-serif text-lg'>Total</span>
+          <span className='font-serif text-lg'>{formatPrice(orderTotal)}</span>
         </p>
       </div>
     </div>

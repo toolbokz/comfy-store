@@ -7,16 +7,16 @@ const SubmitBtn = ({ text }) => {
   return (
     <button
       type='submit'
-      className='btn btn-primary btn-block'
+      className='premium-btn-primary btn-block'
       disabled={isSubmitting}
     >
       {isSubmitting ? (
         <>
-          <span className='loading loading-spinner'></span>
-          sending...
+          <span className='loading loading-spinner loading-sm'></span>
+          Processing...
         </>
       ) : (
-        text || 'submit'
+        text || 'Submit'
       )}
     </button>
   );

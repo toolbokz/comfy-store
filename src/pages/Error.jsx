@@ -6,18 +6,18 @@ const Error = () => {
 
   if (error.status === 404) {
     return (
-      <main className='grid min-h-[100vh] place-items-center px-8'>
+      <main className='min-h-screen grid place-items-center px-8 bg-base-100'>
         <div className='text-center'>
-          <p className='text-9xl font-semibold text-primary'>404</p>
-          <h1 className='mt-4 text-3xl font-bold tracking-tight sm:text-5xl'>
-            page not found
-          </h1>
-          <p className='mt-6 text-lg leading-7'>
-            Sorry, we couldn’t find the page you’re looking for.
+          <p className='font-serif text-8xl sm:text-9xl text-base-content/10'>
+            404
+          </p>
+          <h1 className='heading-md mt-6'>Page Not Found</h1>
+          <p className='body-lg mt-4 max-w-md mx-auto'>
+            The page you are looking for does not exist or has been moved.
           </p>
           <div className='mt-10'>
-            <Link to='/' className='btn btn-secondary'>
-              go back home
+            <Link to='/' className='premium-btn-primary px-10 py-3'>
+              Back to Home
             </Link>
           </div>
         </div>
@@ -26,8 +26,16 @@ const Error = () => {
   }
 
   return (
-    <main className='grid min-h-[100vh] place-items-center px-8'>
-      <h4 className='text-center font-bold text-4xl'>there was an error...</h4>
+    <main className='min-h-screen grid place-items-center px-8 bg-base-100'>
+      <div className='text-center'>
+        <h1 className='heading-md'>Something went wrong</h1>
+        <p className='body-lg mt-4'>Please try again later</p>
+        <div className='mt-10'>
+          <Link to='/' className='premium-btn-primary px-10 py-3'>
+            Back to Home
+          </Link>
+        </div>
+      </div>
     </main>
   );
 };

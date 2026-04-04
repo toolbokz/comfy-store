@@ -18,24 +18,32 @@ const Header = () => {
   };
 
   return (
-    <header className='bg-neutral py-2 text-neutral-content'>
+    <header className='bg-neutral py-2'>
       <div className='align-element flex justify-center sm:justify-end'>
         {user ? (
-          <div className='flex gap-x-2 sm:gap-x-8 items-center'>
-            <p className='text-xs sm:text-sm'>Hello, {user.username}</p>
+          <div className='flex gap-x-6 items-center'>
+            <p className='text-neutral-content/70 text-xs font-sans tracking-wide'>
+              Hello, {user.username}
+            </p>
             <button
-              className='btn btn-xs btn-outline btn-primary'
+              className='text-neutral-content/70 hover:text-neutral-content text-xs font-sans tracking-wide uppercase transition-colors'
               onClick={handleLogout}
             >
-              logout
+              Logout
             </button>
           </div>
         ) : (
-          <div className='flex gap-x-6 justify-center items-center'>
-            <Link to='/login' className='link link-hover text-xs sm:text-sm'>
-              Sign in / Guest
+          <div className='flex gap-x-6 items-center'>
+            <Link
+              to='/login'
+              className='text-neutral-content/70 hover:text-neutral-content text-xs font-sans tracking-wide transition-colors'
+            >
+              Sign In / Guest
             </Link>
-            <Link to='/register' className='link link-hover text-xs sm:text-sm'>
+            <Link
+              to='/register'
+              className='text-neutral-content/70 hover:text-neutral-content text-xs font-sans tracking-wide transition-colors'
+            >
               Create Account
             </Link>
           </div>
